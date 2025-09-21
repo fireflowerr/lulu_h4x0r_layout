@@ -13,7 +13,7 @@ void render_layer_state(void) {
     }
 
     uint8_t column_offset = 4;
-    for (uint8_t layer = 1; layer <= 5; ++layer) {
+    for (uint8_t layer = 1; layer <= 4; ++layer) {
         bool filled = (layer_state & (1 << layer));
 
         uint8_t start_x = column_offset;
@@ -32,7 +32,7 @@ void render_layer_state(void) {
             }
         }
 
-        column_offset += 25;
+        column_offset += 31;
     }
 
     cache = layer_state;

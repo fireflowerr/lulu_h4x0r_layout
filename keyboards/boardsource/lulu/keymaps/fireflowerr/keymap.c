@@ -13,6 +13,7 @@ enum layers {
     _MEDIA,
     _NUMBER,
     _GAMING,
+    _LAST_LAYER = _GAMING,
 };
 
 enum td_actions {
@@ -88,7 +89,7 @@ void dance_layer_each(tap_dance_state_t *state, void *user_data) {
 
     // otherwise do layer dance
     if (target_layer > 0) {
-        if (target_layer > _NUMBER) {
+        if (target_layer > _LAST_LAYER) {
             reset_tap_dance(state);
         } else {
             layer_on(target_layer);
