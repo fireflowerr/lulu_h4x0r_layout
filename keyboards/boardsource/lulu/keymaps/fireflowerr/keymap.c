@@ -11,8 +11,8 @@ enum layers {
     _QWERTY,
     _FUNCTION,
     _MEDIA,
-    _SYMBOL,
     _NUMBER,
+    _GAMING,
 };
 
 enum td_actions {
@@ -381,10 +381,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | TRANS| TRANS| TRANS| TRANS| TRANS| TRANS|                    | TRANS| TRANS| TRANS| TRANS| TRANS| TRANS|
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      | VOL- | VOL+ | MUTE |      |                    | PRINT|      |  UP  |      |      |      |
+ * |      |      | VOL- | VOL+ | MUTE | PRINT|                    | HOME |      |  UP  |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | LAYER|      | RGB- | RGB+ | RGBT |      |-------.    ,-------| PGUP | LEFT | DOWN | RIGHT|      | LOCK |
- * |------+------+------+------+------+------| HOME  |    |  END  |------+------+------+------+------+------|
+ * |------+------+------+------+------+------|       |    |  END  |------+------+------+------+------+------|
  * |      |      |      |      |      |      |-------|    |-------|PGDOWN|      |      |      |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | TRANS| TRANS| TRANS| /TRANS  /       \TRANS \  | TRANS| TRANS| TRANS|
@@ -392,56 +392,57 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
 [_MEDIA] = LAYOUT(
-  KC_TRNS,      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                  KC_TRNS,         KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,
-  KC_NO,        KC_NO,   KC_VOLD, KC_VOLU, KC_MUTE, KC_NO,                                    KC_PRINT_SCREEN, KC_NO,   KC_UP,   KC_NO,    KC_NO,   KC_NO,
-  TD(TD_LAYER), KC_NO,   RM_VALD, RM_VALU, RM_TOGG, KC_NO,                                    KC_PGUP,         KC_LEFT, KC_DOWN, KC_RIGHT, KC_NO,   TD(TD_RLAYER),
-  KC_NO,        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,           KC_HOME, KC_END, KC_PGDN,         KC_NO,   KC_NO,   KC_NO,        KC_NO,       KC_NO,
+  KC_TRNS,      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,
+  KC_NO,        KC_NO,   KC_VOLD, KC_VOLU, KC_MUTE, KC_PRINT_SCREEN,                          KC_HOME, KC_NO,   KC_UP,   KC_NO,    KC_NO,   KC_NO,
+  TD(TD_LAYER), KC_NO,   RM_VALD, RM_VALU, RM_TOGG, KC_NO,                                    KC_PGUP, KC_LEFT, KC_DOWN, KC_RIGHT, KC_NO,   TD(TD_RLAYER),
+  KC_NO,        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,           KC_NO,   KC_END, KC_PGDN, KC_NO,   KC_NO,   KC_NO,        KC_NO,       KC_NO,
                                                       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 ),
 
-/* SYMBOL (4)
- * ,-----------------------------------------.                    ,-----------------------------------------.
- * | TRANS| TRANS| TRANS| TRANS| TRANS| TRANS|                    | TRANS| TRANS| TRANS| TRANS| TRANS| TRANS|
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |   !  |   @  |   #  |      |                    | TRANS| TRANS| TRANS| TRANS| TRANS| TRANS|
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | LAYER|      |   $  |   %  |   ^  |      |-------.    ,-------| TRANS| TRANS| TRANS| TRANS| TRANS| LOCK |
- * |------+------+------+------+------+------| TRANS |    | TRANS |------+------+------+------+------+------|
- * |      |      |   &  |   *  |   (  |   )  |-------|    |-------| TRANS| TRANS| TRANS| TRANS| TRANS| TRANS|
- * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | TRANS| TRANS| TRANS| /TRANS  /       \TRANS \  | TRANS| TRANS| TRANS|
- *                   |      |      |      |/       /         \      \ |      |      |      |
- *                   `----------------------------'           '------''--------------------'
- */
-[_SYMBOL] = LAYOUT(
-  KC_TRNS,      KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,                           KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-  KC_NO,        KC_NO,   KC_EXLM,   KC_AT,   KC_HASH, KC_TRNS,                           KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-  TD(TD_LAYER), KC_TRNS, KC_DOLLAR, KC_PERC, KC_CIRC, KC_TRNS,                           KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, TD(TD_RLAYER),
-  KC_TRNS,      KC_TRNS, KC_AMPR,   KC_ASTR, KC_LPRN, KC_RPRN, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS,     KC_TRNS,
-                                              KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-),
-
-/* NUMBER (5)
- * ,-----------------------------------------.                    ,-----------------------------------------.
- * | TRANS| TRANS| TRANS| TRANS| TRANS| TRANS|                    | TRANS| TRANS| TRANS| TRANS| TRANS| TRANS|
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | TRANS| TRANS| TRANS| TRANS| TRANS| TRANS|                    |   *  |   7  |   8  |   9  |   -  |      |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | LAYER| TRANS| TRANS| TRANS| TRANS| TRANS|-------.    ,-------|   0  |   4  |   5  |   6  |   +  | LOCK |
- * |------+------+------+------+------+------| TRANS |    | TRANS |------+------+------+------+------+------|
- * | TRANS| TRANS| TRANS| TRANS| TRANS| TRANS|-------|    |-------|   /  |   1  |   2  |   3  |   =  |      |
- * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | TRANS| TRANS| TRANS| /TRANS  /       \TRANS \  | TRANS| TRANS| TRANS|
- *                   |      |      |      |/       /         \      \ |      |      |      |
- *                   `----------------------------'           '------''--------------------'
+/* NUMBER (4)
+ * ,-----------------------------------------.                   ,-----------------------------------------.
+ * | TRANS| TRANS| TRANS| TRANS| TRANS| TRANS|                   | TRANS| TRANS| TRANS| TRANS| TRANS| TRANS|
+ * |------+------+------+------+------+------|                   |------+------+------+------+------+------|
+ * |      |      |   !  |   @  |   #  |      |                   |   *  |   7  |   8  |   9  |   -  |      |
+ * |------+------+------+------+------+------|                   |------+------+------+------+------+------|
+ * | LAYER|      |   $  |   %  |   ^  |      |-------.   ,-------|   0  |   4  |   5  |   6  |   +  | LOCK |
+ * |------+------+------+------+------+------| TRANS |   | TRANS |------+------+------+------+------+------|
+ * |      |      |   &  |   *  |   (  |   )  |-------|   |-------|   /  |   1  |   2  |   3  |   =  |      |
+ * `-----------------------------------------/       /    \      \-----------------------------------------'
+ *                    | TRANS| TRANS| TRANS| /TRANS  /      \TRANS \  | TRANS| TRANS| TRANS|
+ *                    |      |      |      |/       /        \      \ |      |      |      |
+ *                    `----------------------------'          '------''--------------------'
  */
 [_NUMBER] = LAYOUT(
-  KC_TRNS,      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                           KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,
-  KC_TRNS,      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                           KC_ASTR, KC_7,    KC_8,    KC_9,    KC_MINUS, KC_NO,
-  TD(TD_LAYER), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                           KC_0,    KC_4,    KC_5,    KC_6,    KC_PLUS,  TD(TD_RLAYER),
-  KC_TRNS,      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_SLSH, KC_1,    KC_2,    KC_3,        KC_EQUAL,     KC_NO,
+   KC_TRNS,      KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,                          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,
+   KC_NO,        KC_NO,   KC_EXLM,   KC_AT,   KC_HASH, KC_TRNS,                          KC_ASTR, KC_7,    KC_8,    KC_9,    KC_MINUS, KC_NO,
+   TD(TD_LAYER), KC_TRNS, KC_DOLLAR, KC_PERC, KC_CIRC, KC_TRNS,                          KC_0,    KC_4,    KC_5,    KC_6,    KC_PLUS,  TD(TD_RLAYER),
+   KC_TRNS,      KC_TRNS, KC_AMPR,   KC_ASTR, KC_LPRN, KC_RPRN, KC_TRNS, KC_TRNS, KC_SLSH, KC_1,    KC_2,    KC_3,        KC_EQUAL,     KC_NO,
                                               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-)};
+),
+
+/* GAMING (5)
+ * ,-----------------------------------------.                   ,-----------------------------------------.
+ * | TRANS| TRANS| TRANS| TRANS| TRANS| TRANS|                   | TRANS| TRANS| TRANS| TRANS| TRANS| TRANS|
+ * |------+------+------+------+------+------|                   |------+------+------+------+------+------|
+ * | TRANS| TRANS| TRANS| TRANS| TRANS| TRANS|                   | TRANS| TRANS| TRANS| TRANS| TRANS| TRANS|
+ * |------+------+------+------+------+------|                   |------+------+------+------+------+------|
+ * | LAYER| TRANS| TRANS| TRANS| TRANS| TRANS|-------.   ,-------| TRANS| TRANS| TRANS| TRANS| TRANS| LOCK |
+ * |------+------+------+------+------+------| ENTER |   | TRANS |------+------+------+------+------+------|
+ * | TRANS| TRANS| TRANS| TRANS| TRANS| TRANS|-------|   |-------| TRANS| TRANS| TRANS| TRANS| TRANS| TRANS|
+ * `-----------------------------------------/       /    \      \-----------------------------------------'
+ *                    | TRANS| ESC  | TRANS| /TRANS  /      \TRANS \  | TRANS| RWIN | TRANS|
+ *                    |      |      |      |/       /        \      \ |      |      |      |
+ *                    `----------------------------'          '------''--------------------'
+ */
+[_GAMING] = LAYOUT(
+  KC_TRNS,      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                            KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,
+  KC_TRNS,      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                            KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,
+  TD(TD_LAYER), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                            KC_0,    KC_4,    KC_5,    KC_6,    KC_PLUS,  TD(TD_RLAYER),
+  KC_TRNS,      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_ENTER, KC_TRNS, KC_SLSH, KC_1,    KC_2,    KC_3,        KC_EQUAL,     KC_NO,
+                                              KC_TRNS, KC_ESC,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_RGUI, KC_TRNS
+),
+};
 
 const keypos_t PROGMEM hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
     {{0, 5}, {1, 5}, {2, 5}, {3, 5}, {4, 5}, {5, 5}},
