@@ -15,7 +15,7 @@ void tap_dance_hold_each(tap_dance_state_t* state, void* user_data) {
 void tap_dance_hold_finished(tap_dance_state_t *state, void *user_data) {
     tap_dance_tap_hold_t* tap_hold = (tap_dance_tap_hold_t*)user_data;
     if (state->pressed && state->count == 1) {
-        register_code16(tap_hold->tap_key);
+        register_code16(tap_hold->hold_key);
         tap_hold->registered_key = tap_hold->hold_key;
     }
 }
