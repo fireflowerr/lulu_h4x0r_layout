@@ -8,12 +8,18 @@
 #endif
 
 void dance_layer_each(tap_dance_state_t* state, void* user_data);
-void dance_layer_finished(tap_dance_state_t* state, void *user_data);
+void dance_layer_finished(tap_dance_state_t* state, void* user_data);
 void dance_layer_reset(tap_dance_state_t* state, void *user_data);
+enum layer_dance_mode {
+    ONESHOT,
+    MOMENTARY,
+    LOCK,
+    OVERFLOW,
+};
 
 typedef struct {
-    uint8_t other_idx;
-    bool revert_on_reset;
+    const uint8_t other_idx;
+    enum layer_dance_mode mode;
 } tap_dance_layer_dance_t;
 
 #define ACTION_LAYER_DANCE(other_layer_action_idx) \
@@ -26,6 +32,6 @@ typedef struct {
         }, \
         .user_data = (void*)&((tap_dance_layer_dance_t){ \
             .other_idx = other_layer_action_idx, \
-            .revert_on_reset = false, \
+            .mode = ONESHOT, \
         }) \
     }

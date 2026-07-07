@@ -1,8 +1,7 @@
-#include "layout_dance.h"
-#include "log.h"
 #include  "process_tap_dance.h"
-#include "layer_lock.h"
+#include "layout_dance.h"
 #include "action_layer.h"
+#include "log.h"
 
 
 extern tap_dance_action_t tap_dance_actions[];

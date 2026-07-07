@@ -1,0 +1,7 @@
+SRC += lib/layout_dance.c
+OPT_DEFS += -DMAX_LAYER_IDX=3
+
+TAP_DANCE_ENABLE = yes
+KEY_OVERRIDE_ENABLE = yes
+COMBO_ENABLE = yes
+CONSOLE_ENABLE = yes
